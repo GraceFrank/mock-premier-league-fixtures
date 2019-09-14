@@ -4,6 +4,8 @@
   "description": "a API that serves the latest scores of fixtures of matches in a “Mock Premier League”",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "jest"
   },
   "repository": {
