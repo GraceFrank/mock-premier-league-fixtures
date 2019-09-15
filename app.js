@@ -1,13 +1,14 @@
 //module dependencies
 const express = require('express');
 const logger = require('./utils/logger');
+const { apiPort } = require('./config/config');
 const connectDatabase = require('./startup/mongodb');
 const { connectToRedis } = require('./startup/redis');
-const { apiPort } = require('./config/config');
+const routes = require('./routes/index');
 
 const app = express();
 
-app.use(express.json());
+routes(app);
 
 connectToRedis();
 
