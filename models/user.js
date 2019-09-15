@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const { hashPassword } = require('../utils/hashPassword');
 
 const UserSchema = new mongoose.Schema({
   firstName: {
@@ -47,7 +47,7 @@ UserSchema.pre('save', function() {
   if (!this.isModified('password')) {
     return next();
   }
-  this.password = bcrypt.hashSync(this.password, 10);
+  this.password = hashPassword(this.password);
   next();
 });
 
