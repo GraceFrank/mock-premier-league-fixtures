@@ -45,14 +45,14 @@ const response = {
     }),
 
   internalError: (res, errors, code = 500) => {
-    logger.error(err);
+    logger.error(`${errors}`);
     const err =
       process.env.NODE_ENV === 'production'
         ? 'An error occured while processing your request, try again'
         : errors;
     res.status(code).json({
       success: false,
-      errors: err
+      errors: err.message
     });
   }
 };
