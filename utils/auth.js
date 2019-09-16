@@ -16,7 +16,7 @@ const getToken = token => Promise.resolve(redisClient.get(token));
 const createSession = user => {
   const { isAdmin, _id } = user;
   const token = signToken(isAdmin);
-  return setToken(token, _id)
+  return setToken(token, String(_id))
     .then(() => {
       return { token, user };
     })
@@ -25,9 +25,4 @@ const createSession = user => {
     });
 };
 
-async function f() {
-  console.log(await createSession({ isAdmin: true, _id: 1 }));
-}
-
-f();
 module.exports = { createSession, getToken, decodeToken };
