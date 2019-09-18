@@ -36,7 +36,7 @@ function validateTeamDetails(teamDetails) {
       .trim()
   };
 
-  return Joi.validate(fixture, schema);
+  return Joi.validate(teamDetails, schema);
 }
 
 module.exports = validateTeamDetails;
