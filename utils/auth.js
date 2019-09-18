@@ -9,7 +9,7 @@ const signToken = payload => jwt.sign(payload, secretKey);
 const decodeToken = token => jwt.decode(token);
 
 const setToken = (token, value) =>
-  Promise.resolve(redisClient.set(token, value));
+  Promise.resolve(redisClient.set(token, value, 'EX', 600));
 
 const getToken = token => Promise.resolve(redisClient.get(token));
 
