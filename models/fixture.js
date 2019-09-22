@@ -1,21 +1,17 @@
 const mongoose = require('mongoose');
 
-const TeamSchema = new mongoose.Schema({
-  team: {
+const FixtureSchema = new mongoose.Schema({
+  date: Date,
+  homeTeam: {
     type: mongoose.Types.ObjectId,
     ref: 'Team',
     required: true
   },
-  score: {
-    type: Number,
-    default: 0,
-    min: 0
-  }
-});
-const FixtureSchema = new mongoose.Schema({
-  date: Date,
-  homeTeam: { type: TeamSchema, required: true },
-  awayTeam: { type: TeamSchema, required: true },
+  awayTeam: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Team',
+    required: true
+  },
   firstHalfStart: Date,
   secondHalfStart: Date,
   status: {
@@ -28,7 +24,12 @@ const FixtureSchema = new mongoose.Schema({
     min: 2,
     max: 50
   },
-  link: String
+  link: String,
+  scores: {
+    type: [Number],
+    default: [0, 0],
+    min: 0
+  }
 });
 
 const Fixture = mongoose.model('fixtures', FixtureSchema);
