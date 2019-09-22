@@ -2,6 +2,7 @@ const validatePayload = require('../validations/team-validation');
 const response = require('../utils/responses');
 const Team = require('../models/team');
 const _ = require('lodash');
+const getPagination = require('../utils/getPagination');
 
 class TeamController {
   static async addTeam(req, res) {
@@ -39,13 +40,7 @@ class TeamController {
 
   static async viewAllTeams(req, res) {
     try {
-      // convert query to number
-      let page = Number(req.query.page);
-      let limit = Number(req.query.limit);
-
-      //assign default values if query params are invalid
-      page = page ? page : 1;
-      limit = limit ? limit : 20;
+      const { page, limit } = getPagination(req);
 
       const teams = await Team.find({})
         .skip((page - 1) * limit)
