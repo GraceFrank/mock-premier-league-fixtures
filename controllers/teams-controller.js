@@ -68,6 +68,28 @@ class TeamController {
       return response.internalError(res, error);
     }
   }
+
+  static async editTeam(req, res) {
+    try {
+      //validate that the req.body payload
+      const { error } = validatePayload(req.body);
+      if (error)
+        return response.badRequest(res, { message: error.details[0].message });
+
+      const team = await Team.findByIdAndUpdate(req.params.id, req.body, {
+        new: true
+      });
+
+      if (!team)
+        return response.notFound(res, {
+          message: 'team does not exist'
+        });
+
+      return response.success(res, team);
+    } catch (err) {
+      return response.internalError(res, err);
+    }
+  }
 }
 
 module.exports = TeamController;
