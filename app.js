@@ -23,3 +23,5 @@ connectToRedis();
 connectDatabase().then(() => {
   app.listen(apiPort, () => logger.info(`listening on port ${apiPort}`));
 });
+
+module.exports = app;

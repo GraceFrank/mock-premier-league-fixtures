@@ -8,7 +8,7 @@ const requireAuth = async (req, res, next) => {
   }
   const token = await redisClient.get(authorization);
   if (!token) {
-    return res.status(401).send('Unauthorized');
+    return response.unAuthorized(res, { message: 'unAuthorized' });
   }
   return next();
 };
