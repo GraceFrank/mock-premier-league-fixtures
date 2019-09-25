@@ -1,7 +1,6 @@
 //module dependencies
 const express = require('express');
 const logger = require('./utils/logger');
-const { apiPort } = require('./config/config');
 const connectDatabase = require('./startup/mongodb');
 const { connectToRedis } = require('./startup/redis');
 const routes = require('./routes/index');
@@ -18,7 +17,7 @@ if (!config.jwtSecretKey) {
 routes(app);
 
 connectToRedis();
-
+const apiPort = config.apiPort || 3000;
 //on successful connection of database start server
 connectDatabase().then(() => {
   app.listen(apiPort, () => logger.info(`listening on port ${apiPort}`));
