@@ -7,5 +7,6 @@ module.exports = {
   redisHost: process.env.REDIS_HOST,
   redisPort: process.env.REDIS_PORT,
   redisUrl: process.env.REDIS_URL,
+  redisPassword: process.env.REDIS_PASSWORD,
   jwtSecretKey: process.env.JWT_SECRET_KEY
 };
