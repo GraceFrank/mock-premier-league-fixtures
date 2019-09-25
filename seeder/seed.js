@@ -35,7 +35,7 @@ const fakeFixture = ({ homeTeam, awayTeam, status, scores }) => ({
   scores: scores
 });
 
-function seedUser(amount = 10) {
+function seedUser(amount = 20) {
   const users = [];
   for (let i = 1; i <= amount; i++) {
     const user = new User(fakeUser());
@@ -86,4 +86,4 @@ async function seedFixture(amount = 10) {
   Fixture.insertMany(fixtures);
 }
 
-module.exports = fake;
+seedFixture(30);

@@ -17,11 +17,14 @@ class AuthController {
       //check if user with given email exist in db
       let user = await User.findOne({ email: req.body.email });
       if (!user)
-        if (!isValidPassword(req.body.password))
-          //if user exist, validate password
-          return response.unAuthorized(res, {
-            message: 'invalid email or password'
-          });
+        return response.unAuthorized(res, {
+          message: 'invalid email or password'
+        });
+      //if user exist, validate password
+      if (!isValidPassword(req.body.password, user.password))
+        return response.unAuthorized(res, {
+          message: 'invalid email or password'
+        });
 
       //create session for the user
       user = _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'isAdmin']);
