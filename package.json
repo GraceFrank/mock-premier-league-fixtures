@@ -9,6 +9,9 @@
     "seed": "node ./seeder/seed.js",
     "test": "jest"
   },
+  "engines": {
+    "node": "10.16.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GraceFrank/mock-premier-league-fixtures.git"
@@ -22,9 +25,11 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "helmet": "^3.21.1",
     "jest": "^24.9.0",
     "joi": "^14.3.1",
     "joi-objectid": "^2.0.0",
